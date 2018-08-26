@@ -56,12 +56,12 @@ You should create a development directory for running the examples in this book.
 Inside that development directory, make a directory called led, and in it add the following files.
 
 You need a pcf file,
-####led.pcf
+#### led.pcf
 ```verilog
 set_io blue_led 71
 ```
 
-####led.v
+#### led.v
 ```verilog
 module led(
     output blue_led
@@ -103,7 +103,7 @@ Another problem that can occur on Linux machine is that a program called modemma
 ### An Array of LEDs
 You can address all 4 LEDs at once. Make a directory called led and in it add:
 
-####leds.pcf
+#### leds.pcf
 ```verilog
 set_io leds[0] 71
 set_io leds[1] 67
@@ -111,7 +111,7 @@ set_io leds[2] 68
 set_io leds[3] 70
 ```
 
-####leds.v
+#### leds.v
 ```verilog
 module leds(
     output [3:0] leds
@@ -121,7 +121,7 @@ assign leds = 4’b1111;
 
 endmodule
 ```
-####Makefile
+#### Makefile
 ```makefile
 VERILOG_FILES = leds.v
 PCF_FILE = leds.pcf
@@ -137,13 +137,13 @@ The BlackIce II board has two built-in buttons available to the FPGA.
 ### Light an LED when a button is pressed
 Make a directory called button and in it add:
 
-####button_test.pcf
+#### button_test.pcf
 ```verilog
 set_io blue_led 71
 set_io button1 63
 ```
 
-####button_test.v
+#### button_test.v
 ```verilog
 module button_test(
     output blue_led,
@@ -155,7 +155,7 @@ assign blue_led = ~button1;
 endmodule
 ```
 
-####Makefile
+#### Makefile
 ```makefile
 VERILOG_FILES = button_test.v
 PCF_FILE = button_test.pcf
@@ -173,7 +173,7 @@ To see the problem, lets implement a simple button press module and use the 4 le
 
 Make a directory called bounce and add:
 
-####bounce.pcf
+#### bounce.pcf
 ```verilog
 set_io leds[0] 71
 set_io leds[1] 67
@@ -182,7 +182,7 @@ set_io leds[3] 70
 set_io button 63
 ```
 
-####bounce.v
+#### bounce.v
 ```verilog
 module bounce(
     input button,
@@ -202,7 +202,7 @@ To fix this, we will use the debouncer from fpgafun.com.
 
 So, create a directory called debounce and add:
 
-####debounce.pcf
+#### debounce.pcf
 ```verilog
 set_io clk 129
 set_io leds[0] 71
@@ -214,7 +214,7 @@ set_io button 63
 
 Then add the debouncer from fpgafun.com:
 
-####PushButton_Debouncer.v
+#### PushButton_Debouncer.v
 ```verilog
 module PushButton_Debouncer(
     input clk,
@@ -288,7 +288,7 @@ The following example sets the LEDs according to the switch setting.
 
 Make a directory called switches and in it add:
 
-####switch_test.pcf
+#### switch_test.pcf
 ```verilog
 set_io led[0] 71
 set_io led[1] 67
@@ -300,7 +300,7 @@ set_io switch[2] 38
 set_io switch[3] 37
 ```
 
-####switch_test.v
+#### switch_test.v
 ```verilog
 module switch_test(
     output [3:0] led,
@@ -322,13 +322,13 @@ Here we will use it to set the brightness of a built-in LED.
 
 Make a directory called ledglow and in it add:
 
-####ledglow.pcf
+#### ledglow.pcf
 ```verilog
 set_io LED 71
 set_io clk 129
 ```
 
-####ledglow.v
+#### ledglow.v
 ```verilog
 module LEDglow(
     input clk;
@@ -349,7 +349,7 @@ assign LED = PWM[4];
 
 endmodule
 ```
-####Makefile
+#### Makefile
 ```makefile
 VERILOG_FILES = LEDglow.v
 PCF_FILE = LEDglow.pcf
